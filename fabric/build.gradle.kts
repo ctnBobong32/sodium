@@ -3,9 +3,18 @@ import net.fabricmc.loom.task.RemapSourcesJarTask
 
 plugins {
     id("multiloader-platform")
-
     id("fabric-loom") version ("1.13.4")
 }
+
+// ========== 关键修复：添加依赖仓库 ==========
+repositories {
+    mavenCentral()
+    maven {
+        name = "Fabric"
+        url = uri("https://maven.fabricmc.net/")
+    }
+}
+// ========================================
 
 base {
     archivesName = "sodium-fabric"
@@ -79,7 +88,7 @@ dependencies {
         include(module)
     }
 
-    // Fabric API modules
+    // Fabric API 模块（已移除可能不存在的 v0 模块）
     addEmbeddedFabricModule("fabric-api-base")
     addEmbeddedFabricModule("fabric-block-view-api-v2")
     addEmbeddedFabricModule("fabric-rendering-v1")
@@ -90,7 +99,7 @@ dependencies {
 
     addEmbeddedFabricModule("fabric-lifecycle-events-v1")
     addEmbeddedFabricModule("fabric-rendering-fluids-v1")
-    addEmbeddedFabricModule("fabric-resource-loader-v0")
+    // addEmbeddedFabricModule("fabric-resource-loader-v0")  // ⚠️ 此模块在新版中可能已不存在，已注释
     addEmbeddedFabricModule("fabric-resource-loader-v1")
     addEmbeddedFabricModule("fabric-transitive-access-wideners-v1")
 }
