@@ -94,7 +94,8 @@ dependencies {
     addEmbeddedFabricModule("fabric-rendering-v1")
 
     if (BuildConfig.SUPPORT_FRAPI) {
-        addEmbeddedFabricModule("fabric-renderer-api-v1")
+     modImplementation("net.fabricmc.fabric-api:fabric-resource-loader-v1:2.0.6+e2bdee78f2")
+     include("net.fabricmc.fabric-api:fabric-resource-loader-v1:2.0.6+e2bdee78f2")
     }
 
     addEmbeddedFabricModule("fabric-lifecycle-events-v1")
