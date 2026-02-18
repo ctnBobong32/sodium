@@ -33,6 +33,10 @@ jobs:
         with:
           cache-read-only: false
 
+      # 新增步骤：赋予 gradlew 执行权限
+      - name: 赋予 gradlew 执行权限
+        run: chmod +x gradlew
+
       - name: 执行 Gradle 构建
         run: ./gradlew build
 
